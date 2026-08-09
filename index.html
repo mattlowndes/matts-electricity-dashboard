@@ -906,6 +906,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     #matt-ios-electricity .nav-btn { color: var(--foreground); background: transparent; border: 0; border-radius: 12px; font-size: calc(var(--font-size-base) * 1.45); }
     #matt-ios-electricity .nav-btn:disabled { color: var(--muted-foreground); opacity: .35; }
     #matt-ios-electricity .period-label { text-align: center; font-weight: 500; }
+    #matt-ios-electricity .period-copy { min-width: 0; text-align: center; }
+    #matt-ios-electricity .period-meta { margin-top: 3px; font-size: max(10px, calc(var(--font-size-base) * .7)); }
+    #matt-ios-electricity .latest-btn { display: inline-flex; align-items: center; min-height: 28px; margin-top: 7px; padding: 2px 11px; border: 0; border-radius: 999px; color: var(--viz-series-1); background: color-mix(in srgb, var(--viz-series-1) 12%, transparent); font-size: 11px; font-weight: 600; }
+    #matt-ios-electricity .latest-btn[hidden] { display: none; }
     #matt-ios-electricity .headline { text-align: center; padding: 8px 0 16px; }
     #matt-ios-electricity .headline-value { font-size: calc(var(--font-size-base) * 2.35); font-weight: 500; letter-spacing: -.04em; }
     #matt-ios-electricity .headline-cost { margin-top: 4px; font-size: calc(var(--font-size-base) * 1.05); }
@@ -960,7 +964,11 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   &lt;nav class=&quot;period-nav&quot; aria-label=&quot;Move between periods&quot;&gt;
     &lt;button id=&quot;period-prev&quot; class=&quot;nav-btn&quot; type=&quot;button&quot; aria-label=&quot;Previous period&quot;&gt;‹&lt;/button&gt;
-    &lt;div id=&quot;period-label&quot; class=&quot;period-label&quot;&gt;Confirmed bill periods&lt;/div&gt;
+    &lt;div class=&quot;period-copy&quot; aria-live=&quot;polite&quot;&gt;
+      &lt;div id=&quot;period-label&quot; class=&quot;period-label&quot;&gt;8 July–7 August 2026&lt;/div&gt;
+      &lt;div id=&quot;period-meta&quot; class=&quot;period-meta muted&quot;&gt;Confirmed bill periods · 2 of 2&lt;/div&gt;
+      &lt;button id=&quot;period-latest&quot; class=&quot;latest-btn&quot; type=&quot;button&quot; hidden&gt;Return to latest&lt;/button&gt;
+    &lt;/div&gt;
     &lt;button id=&quot;period-next&quot; class=&quot;nav-btn&quot; type=&quot;button&quot; aria-label=&quot;Next period&quot;&gt;›&lt;/button&gt;
   &lt;/nav&gt;
 
@@ -1040,7 +1048,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         {date:parse(&#x27;2026-01-01&#x27;),kwh:3300,days:365,status:&#x27;estimated&#x27;,key:&#x27;y1&#x27;,label:&#x27;Ecotricity&#x27;,fullLabel:&#x27;Ecotricity annual estimate&#x27;},
         {date:parse(&#x27;2027-01-01&#x27;),kwh:237.8/31*365,days:365,status:&#x27;estimated&#x27;,key:&#x27;y2&#x27;,label:&#x27;Latest pace&#x27;,fullLabel:&#x27;Annualised latest usage pace&#x27;}
       ];
-      let view = &#x27;month&#x27;, measure = &#x27;kwh&#x27;, page = 0, selectedKey = &#x27;bill-2&#x27;, previousValues = null;
+      let view = &#x27;month&#x27;, measure = &#x27;kwh&#x27;, selectedKey = &#x27;bill-2&#x27;, previousValues = null, swipeStart = null;
       const svg = d3.select(root.querySelector(&#x27;.usage-chart&#x27;));
 
       const formatDay = d3.timeFormat(&#x27;%-d %B %Y&#x27;);
@@ -1054,8 +1062,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         return type===&#x27;day&#x27;?daily:type===&#x27;week&#x27;?weekly:type===&#x27;month&#x27;?billing:annual;
       }
 
-      function pageSize() { return view===&#x27;day&#x27;?7:view===&#x27;week&#x27;?6:view===&#x27;month&#x27;?6:4; }
-      function visibleRows() { const all=aggregate(view), size=pageSize(), start=page*size; return {all,rows:all.slice(start,start+size),start,size}; }
+      function visibleRows() { const all=aggregate(view); return {all,rows:all}; }
       function value(d) { return measure===&#x27;kwh&#x27;?d.kwh:totalCost(d); }
       function baselineValue(d) { const k=baseline*d.days; return measure===&#x27;kwh&#x27;?k:k*unit+d.days*standing; }
       function formatValue(v) { return measure===&#x27;kwh&#x27;?v.toFixed(2)+&#x27; kWh&#x27;:money(v); }
@@ -1076,22 +1083,25 @@ html&gt;body{padding:0}&lt;/style&gt;
         else { const currentDaily=d.kwh/d.days, priorDaily=prior.kwh/prior.days, delta=(currentDaily-priorDaily)/priorDaily*100; root.querySelector(&#x27;#previous-comparison&#x27;).textContent=(delta&gt;=0?&#x27;+&#x27;:&#x27;&#x27;)+delta.toFixed(1)+&#x27;% daily usage&#x27;; }
       }
 
-      function updateHeadline(rows, chosen) {
+      function updateHeadline(rows, chosen, all) {
         const kwh=chosen?.kwh||0, days=chosen?.days||0, cost=chosen?totalCost(chosen):0;
         root.querySelector(&#x27;#headline-value&#x27;).textContent=measure===&#x27;kwh&#x27;?kwh.toFixed(2)+&#x27; kWh&#x27;:money(cost);
         root.querySelector(&#x27;#headline-cost&#x27;).textContent=measure===&#x27;kwh&#x27;?money(cost)+&#x27; all-in&#x27;:kwh.toFixed(2)+&#x27; kWh used&#x27;;
         root.querySelector(&#x27;#headline-meta&#x27;).textContent=(days?kwh/days:0).toFixed(2)+&#x27; kWh/day · &#x27;+days+&#x27; day&#x27;+(days===1?&#x27;&#x27;:&#x27;s&#x27;)+&#x27; represented&#x27;;
         const labels={day:&#x27;Daily readings and bill averages&#x27;,week:&#x27;Weekly pace comparison&#x27;,month:&#x27;Confirmed bill periods&#x27;,year:&#x27;Annual outlook&#x27;};
-        root.querySelector(&#x27;#period-label&#x27;).textContent=rows.length?labels[view]:&#x27;No readings&#x27;;
+        const index=chosen?all.findIndex(d=&gt;d.key===chosen.key):-1;
+        root.querySelector(&#x27;#period-label&#x27;).textContent=chosen?chosen.fullLabel:&#x27;No readings&#x27;;
+        root.querySelector(&#x27;#period-meta&#x27;).textContent=chosen?labels[view]+&#x27; · &#x27;+(index+1)+&#x27; of &#x27;+all.length:labels[view];
+        root.querySelector(&#x27;#period-latest&#x27;).hidden=index===all.length-1;
+        root.querySelector(&#x27;#period-prev&#x27;).disabled=index&lt;=0;
+        root.querySelector(&#x27;#period-next&#x27;).disabled=index&lt;0||index&gt;=all.length-1;
       }
 
       function draw() {
-        const {all,rows,start,size}=visibleRows();
-        root.querySelector(&#x27;#period-prev&#x27;).disabled=page===0;
-        root.querySelector(&#x27;#period-next&#x27;).disabled=start+size&gt;=all.length;
+        const {all,rows}=visibleRows();
         const chosen=rows.find(d=&gt;d.key===selectedKey)||rows[rows.length-1];
         if (chosen) setSelected(chosen,all);
-        updateHeadline(rows,chosen);
+        updateHeadline(rows,chosen,all);
 
         const width=Math.max(300,root.querySelector(&#x27;.chart-shell&#x27;).getBoundingClientRect().width), height=280;
         const margin={top:22,right:12,bottom:52,left:64};
@@ -1120,10 +1130,24 @@ html&gt;body{padding:0}&lt;/style&gt;
         previousValues=vals;
       }
 
-      root.querySelectorAll(&#x27;[data-view]&#x27;).forEach(btn=&gt;btn.addEventListener(&#x27;click&#x27;,()=&gt;{view=btn.dataset.view;page=0;previousValues=null;selectedKey=null;root.querySelectorAll(&#x27;[data-view]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b===btn)));draw();}));
+      function moveSelection(delta) {
+        const all=aggregate(view), current=all.findIndex(d=&gt;d.key===selectedKey), index=current&lt;0?all.length-1:current, next=Math.max(0,Math.min(all.length-1,index+delta));
+        if (next===index) return;
+        selectedKey=all[next].key;
+        previousValues=null;
+        draw();
+      }
+
+      root.querySelectorAll(&#x27;[data-view]&#x27;).forEach(btn=&gt;btn.addEventListener(&#x27;click&#x27;,()=&gt;{view=btn.dataset.view;previousValues=null;selectedKey=null;root.querySelectorAll(&#x27;[data-view]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b===btn)));draw();}));
       root.querySelectorAll(&#x27;[data-measure]&#x27;).forEach(btn=&gt;btn.addEventListener(&#x27;click&#x27;,()=&gt;{measure=btn.dataset.measure;previousValues=null;root.querySelectorAll(&#x27;[data-measure]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b===btn)));draw();}));
-      root.querySelector(&#x27;#period-prev&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{if(page&gt;0){page--;previousValues=null;selectedKey=null;draw();}});
-      root.querySelector(&#x27;#period-next&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{const {all,start,size}=visibleRows();if(start+size&lt;all.length){page++;previousValues=null;selectedKey=null;draw();}});
+      root.querySelector(&#x27;#period-prev&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;moveSelection(-1));
+      root.querySelector(&#x27;#period-next&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;moveSelection(1));
+      root.querySelector(&#x27;#period-latest&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{const all=aggregate(view);selectedKey=all[all.length-1].key;previousValues=null;draw();});
+      const chartShell=root.querySelector(&#x27;.chart-shell&#x27;);
+      chartShell.style.touchAction=&#x27;pan-y&#x27;;
+      chartShell.addEventListener(&#x27;pointerdown&#x27;,event=&gt;{swipeStart={x:event.clientX,y:event.clientY};});
+      chartShell.addEventListener(&#x27;pointerup&#x27;,event=&gt;{if(!swipeStart)return;const dx=event.clientX-swipeStart.x,dy=event.clientY-swipeStart.y;swipeStart=null;if(Math.abs(dx)&gt;48&amp;&amp;Math.abs(dx)&gt;Math.abs(dy)*1.2)moveSelection(dx&lt;0?1:-1);});
+      chartShell.addEventListener(&#x27;pointercancel&#x27;,()=&gt;{swipeStart=null;});
       new ResizeObserver(draw).observe(root.querySelector(&#x27;.chart-shell&#x27;));
       draw();
     })();
