@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Electricity">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#11132b">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Matt's Electricity</title>
-<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255),rgb(24 24 24))}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:inherit}iframe{display:block;width:100%;height:100svh;margin:0;border:0}</style>
+<style>:root{color-scheme:dark;background:#11132b}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:#11132b}iframe{display:block;width:100%;height:100svh;margin:0;border:0}</style>
 </head>
 <body>
 <iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Matts Electricity Dashboard" srcdoc="&lt;!doctype html&gt;
@@ -955,6 +955,52 @@ html&gt;body{padding:0}&lt;/style&gt;
       #matt-ios-electricity .measure { width: 118px; }
       #matt-ios-electricity .breakdown { grid-template-columns: 1fr 1fr; }
     }
+
+    /* Energy Gradient theme */
+    #matt-ios-electricity { color: #fff; background: #11132b; min-height: 100%; padding: max(18px, env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom)); }
+    #matt-ios-electricity h1 { font-size: calc(var(--font-size-base) * 1.55); letter-spacing: -.03em; }
+    #matt-ios-electricity .eyebrow, #matt-ios-electricity .muted { color: #aaa9cd; }
+    #matt-ios-electricity .topline { padding-bottom: 18px; border-bottom: 0; }
+    #matt-ios-electricity .controls { margin-bottom: 0; }
+    #matt-ios-electricity .segment { gap: 3px; padding: 4px; background: #202344; border: 1px solid #30345b; border-radius: 16px; min-width: min(100%, 320px); }
+    #matt-ios-electricity .segment button { color: #bbbddd; border-radius: 12px; min-height: 40px; }
+    #matt-ios-electricity .segment button[aria-pressed=&quot;true&quot;] { color: #fff; background: #7c5cff; box-shadow: 0 5px 14px rgba(77,48,194,.34); }
+    #matt-ios-electricity .energy-hero { margin: 14px 0 16px; padding: 10px 16px 20px; border-radius: 26px; background: linear-gradient(140deg,#7554ff 0%,#4726bf 100%); box-shadow: 0 16px 36px rgba(76,43,194,.34); }
+    #matt-ios-electricity .energy-hero .muted { color: #e0dcff; }
+    #matt-ios-electricity .period-nav { margin: 0 0 4px; }
+    #matt-ios-electricity .nav-btn { color: #fff; }
+    #matt-ios-electricity .nav-btn:disabled { color: #d7d1ff; }
+    #matt-ios-electricity .latest-btn { color: #fff; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.24); font-weight: 500; }
+    #matt-ios-electricity .headline { text-align: left; padding: 8px 4px 0; }
+    #matt-ios-electricity .headline-value { font-size: calc(var(--font-size-base) * 2.55); }
+    #matt-ios-electricity .headline-cost { margin-top: 6px; color: #5ee4c6; font-size: calc(var(--font-size-base) * 1.12); font-weight: 500; }
+    #matt-ios-electricity .headline-meta { margin-top: 8px; color: #e0dcff; }
+    #matt-ios-electricity .chart-shell { margin-top: 8px; padding-top: 16px; }
+    #matt-ios-electricity .chart-frame, #matt-ios-electricity .grid-line { stroke: #30345b; }
+    #matt-ios-electricity .grid-line { opacity: .8; }
+    #matt-ios-electricity .axis text, #matt-ios-electricity .axis-title, #matt-ios-electricity .ref-label { fill: #bbbddd; }
+    #matt-ios-electricity .axis path, #matt-ios-electricity .axis line { stroke: #3a3e66; }
+    #matt-ios-electricity .bar { fill: #4bd6bf; }
+    #matt-ios-electricity .bar.spike { fill: #ff7b8c; }
+    #matt-ios-electricity .bar.estimated { fill: #9a7cff; opacity: .72; }
+    #matt-ios-electricity .bar.selected { stroke: #fff; }
+    #matt-ios-electricity .reference { stroke: #9a9cba; }
+    #matt-ios-electricity .legend { color: #aaa9cd; }
+    #matt-ios-electricity .swatch { background: #4bd6bf; }
+    #matt-ios-electricity .swatch.estimated { background: #9a7cff; opacity: .72; }
+    #matt-ios-electricity .dash { border-color: #9a9cba; }
+    #matt-ios-electricity .detail { padding: 17px; border: 1px solid #30345b; border-radius: 20px; background: #1c1f3c; box-shadow: 0 12px 28px rgba(4,5,18,.22); }
+    #matt-ios-electricity .detail-total { color: #5ee4c6; }
+    #matt-ios-electricity .breakdown { border-color: #34385d; }
+    #matt-ios-electricity .comparison { padding-inline: 2px; border-color: #292d4c; color: #bbbddd; }
+    #matt-ios-electricity .comparison strong { color: #fff; }
+    #matt-ios-electricity .source { color: #8f91b1; }
+    @media (max-width: 520px) {
+      #matt-ios-electricity { padding-inline: 14px; }
+      #matt-ios-electricity .topline { align-items: end; }
+      #matt-ios-electricity .tariff { text-align: right; }
+      #matt-ios-electricity .energy-hero { border-radius: 24px; }
+    }
   &lt;/style&gt;
 
   &lt;header class=&quot;topline&quot;&gt;
@@ -962,6 +1008,20 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;p class=&quot;tariff muted&quot;&gt;£44.90 credit&lt;br&gt;EcoFixed · ends 7 Jun 2027&lt;/p&gt;
   &lt;/header&gt;
 
+  &lt;div class=&quot;controls&quot;&gt;
+    &lt;div class=&quot;segment&quot; aria-label=&quot;Aggregation level&quot;&gt;
+      &lt;button type=&quot;button&quot; data-view=&quot;day&quot; aria-pressed=&quot;true&quot;&gt;Day&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-view=&quot;week&quot; aria-pressed=&quot;false&quot;&gt;Week&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-view=&quot;month&quot; aria-pressed=&quot;false&quot;&gt;Month&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-view=&quot;year&quot; aria-pressed=&quot;false&quot;&gt;Year&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;segment measure&quot; aria-label=&quot;Chart measure&quot;&gt;
+      &lt;button type=&quot;button&quot; data-measure=&quot;kwh&quot; aria-pressed=&quot;true&quot;&gt;kWh&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-measure=&quot;cost&quot; aria-pressed=&quot;false&quot;&gt;£&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;section class=&quot;energy-hero&quot;&gt;
   &lt;nav class=&quot;period-nav&quot; aria-label=&quot;Move between periods&quot;&gt;
     &lt;button id=&quot;period-prev&quot; class=&quot;nav-btn&quot; type=&quot;button&quot; aria-label=&quot;Previous period&quot;&gt;‹&lt;/button&gt;
     &lt;div class=&quot;period-copy&quot; aria-live=&quot;polite&quot;&gt;
@@ -977,19 +1037,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div id=&quot;headline-cost&quot; class=&quot;headline-cost&quot;&gt;£2.40 all-in&lt;/div&gt;
     &lt;div id=&quot;headline-meta&quot; class=&quot;headline-meta&quot;&gt;8.50 kWh/day · 1 day represented&lt;/div&gt;
   &lt;/section&gt;
-
-  &lt;div class=&quot;controls&quot;&gt;
-    &lt;div class=&quot;segment&quot; aria-label=&quot;Aggregation level&quot;&gt;
-      &lt;button type=&quot;button&quot; data-view=&quot;day&quot; aria-pressed=&quot;true&quot;&gt;Day&lt;/button&gt;
-      &lt;button type=&quot;button&quot; data-view=&quot;week&quot; aria-pressed=&quot;false&quot;&gt;Week&lt;/button&gt;
-      &lt;button type=&quot;button&quot; data-view=&quot;month&quot; aria-pressed=&quot;false&quot;&gt;Month&lt;/button&gt;
-      &lt;button type=&quot;button&quot; data-view=&quot;year&quot; aria-pressed=&quot;false&quot;&gt;Year&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;segment measure&quot; aria-label=&quot;Chart measure&quot;&gt;
-      &lt;button type=&quot;button&quot; data-measure=&quot;kwh&quot; aria-pressed=&quot;true&quot;&gt;kWh&lt;/button&gt;
-      &lt;button type=&quot;button&quot; data-measure=&quot;cost&quot; aria-pressed=&quot;false&quot;&gt;£&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+  &lt;/section&gt;
 
   &lt;section class=&quot;chart-shell&quot;&gt;
     &lt;h2 class=&quot;sr-only&quot;&gt;Electricity usage chart&lt;/h2&gt;
@@ -1133,7 +1181,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         svg.append(&#x27;g&#x27;).selectAll(&#x27;line&#x27;).data(y.ticks(ticks)).join(&#x27;line&#x27;).attr(&#x27;class&#x27;,&#x27;grid-line&#x27;).attr(&#x27;x1&#x27;,margin.left).attr(&#x27;x2&#x27;,width-margin.right).attr(&#x27;y1&#x27;,d=&gt;y(d)).attr(&#x27;y2&#x27;,d=&gt;y(d));
         svg.append(&#x27;rect&#x27;).attr(&#x27;class&#x27;,&#x27;chart-frame&#x27;).attr(&#x27;data-chart-frame&#x27;,&#x27;&#x27;).attr(&#x27;x&#x27;,margin.left).attr(&#x27;y&#x27;,margin.top).attr(&#x27;width&#x27;,width-margin.left-margin.right).attr(&#x27;height&#x27;,height-margin.top-margin.bottom);
         const prior=previousValues||vals;
-        const bars=svg.append(&#x27;g&#x27;).selectAll(&#x27;rect&#x27;).data(rows,d=&gt;d.key).join(&#x27;rect&#x27;).attr(&#x27;class&#x27;,d=&gt;&#x27;bar &#x27;+(d.status===&#x27;estimated&#x27;?&#x27;estimated &#x27;:&#x27;&#x27;)+(d.key===selectedKey?&#x27;selected&#x27;:&#x27;&#x27;))
+        const bars=svg.append(&#x27;g&#x27;).selectAll(&#x27;rect&#x27;).data(rows,d=&gt;d.key).join(&#x27;rect&#x27;).attr(&#x27;class&#x27;,d=&gt;&#x27;bar &#x27;+(d.status===&#x27;estimated&#x27;?&#x27;estimated &#x27;:&#x27;&#x27;)+(d.kwh/d.days&gt;baseline*1.5?&#x27;spike &#x27;:&#x27;&#x27;)+(d.key===selectedKey?&#x27;selected&#x27;:&#x27;&#x27;))
           .attr(&#x27;x&#x27;,d=&gt;x(d.key)).attr(&#x27;width&#x27;,x.bandwidth()).attr(&#x27;rx&#x27;,5).attr(&#x27;y&#x27;,(d,i)=&gt;y(prior[i]??0)).attr(&#x27;height&#x27;,(d,i)=&gt;y(0)-y(prior[i]??0))
           .attr(&#x27;aria-label&#x27;,d=&gt;`${d.fullLabel}: ${formatValue(value(d))}`)
           .on(&#x27;click&#x27;,(event,d)=&gt;{setSelected(d,all);draw();});
