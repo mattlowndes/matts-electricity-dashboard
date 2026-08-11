@@ -925,6 +925,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #matt-ios-electricity .chart-frame, #matt-ios-electricity .grid-line { stroke: var(--border); fill: none; }
     #matt-ios-electricity .grid-line { opacity: .65; }
     #matt-ios-electricity .axis text, #matt-ios-electricity .axis-title, #matt-ios-electricity .ref-label { fill: var(--foreground); font-size: 12px; }
+    #matt-ios-electricity .axis.compact text { font-size: 11px; }
     #matt-ios-electricity .axis path, #matt-ios-electricity .axis line { stroke: var(--border); }
     #matt-ios-electricity .bar { fill: var(--viz-series-1); cursor: pointer; }
     #matt-ios-electricity .bar.estimated { fill: var(--viz-series-2); opacity: .58; }
@@ -1200,7 +1201,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#chart-heading&#x27;).textContent=chartTitles[view];
 
         const width=Math.max(300,root.querySelector(&#x27;.chart-shell&#x27;).getBoundingClientRect().width), height=280;
-        const margin={top:22,right:12,bottom:52,left:64};
+        const compactWeeklyLabels=view===&#x27;week&#x27;&amp;&amp;width&lt;560;
+        const margin={top:22,right:12,bottom:compactWeeklyLabels?64:52,left:64};
         svg.attr(&#x27;viewBox&#x27;,`0 0 ${width} ${height}`).attr(&#x27;height&#x27;,height).attr(&#x27;aria-label&#x27;,`${view} electricity ${measure===&#x27;kwh&#x27;?&#x27;usage&#x27;:&#x27;cost&#x27;} chart`);
         svg.selectAll(&#x27;*&#x27;).remove();
         const vals=rows.map(value), refs=rows.map(baselineValue);
@@ -1219,7 +1221,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         svg.append(&#x27;g&#x27;).selectAll(&#x27;line&#x27;).data(rows).join(&#x27;line&#x27;).attr(&#x27;class&#x27;,&#x27;reference&#x27;)
           .attr(&#x27;x1&#x27;,d=&gt;x(d.key)).attr(&#x27;x2&#x27;,d=&gt;x(d.key)+x.bandwidth()).attr(&#x27;y1&#x27;,d=&gt;y(baselineValue(d))).attr(&#x27;y2&#x27;,d=&gt;y(baselineValue(d)));
         const xAxis=d3.axisBottom(x).tickValues(width&lt;380&amp;&amp;rows.length&gt;4?x.domain().filter((d,i)=&gt;i%2===0):x.domain()).tickFormat(k=&gt;rows.find(d=&gt;d.key===k)?.label||&#x27;&#x27;).tickSizeOuter(0);
-        svg.append(&#x27;g&#x27;).attr(&#x27;class&#x27;,&#x27;axis&#x27;).attr(&#x27;transform&#x27;,`translate(0,${height-margin.bottom})`).call(xAxis);
+        const xGroup=svg.append(&#x27;g&#x27;).attr(&#x27;class&#x27;,&#x27;axis&#x27;).classed(&#x27;compact&#x27;,compactWeeklyLabels).attr(&#x27;transform&#x27;,`translate(0,${height-margin.bottom})`).call(xAxis);
+        if(compactWeeklyLabels){
+          xGroup.selectAll(&#x27;.tick text&#x27;).each(function(key){
+            const parts=(rows.find(d=&gt;d.key===key)?.label||&#x27;&#x27;).split(/\s+/);
+            const text=d3.select(this).text(null).attr(&#x27;y&#x27;,7).attr(&#x27;dy&#x27;,null);
+            parts.forEach((part,i)=&gt;text.append(&#x27;tspan&#x27;).attr(&#x27;x&#x27;,0).attr(&#x27;dy&#x27;,i?&#x27;1.05em&#x27;:&#x27;.65em&#x27;).text(part));
+          });
+        }
         svg.append(&#x27;g&#x27;).attr(&#x27;class&#x27;,&#x27;axis&#x27;).attr(&#x27;transform&#x27;,`translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(ticks).tickFormat(d=&gt;measure===&#x27;kwh&#x27;?d:&#x27;£&#x27;+d));
         svg.append(&#x27;text&#x27;).attr(&#x27;class&#x27;,&#x27;axis-title&#x27;).attr(&#x27;data-axis&#x27;,&#x27;x&#x27;).attr(&#x27;x&#x27;,(margin.left+width-margin.right)/2).attr(&#x27;y&#x27;,height-7).attr(&#x27;text-anchor&#x27;,&#x27;middle&#x27;).text(view===&#x27;day&#x27;?&#x27;Calendar day&#x27;:view===&#x27;week&#x27;?&#x27;Calendar week&#x27;:view===&#x27;month&#x27;?&#x27;Calendar month&#x27;:&#x27;Calendar year&#x27;);
         svg.append(&#x27;text&#x27;).attr(&#x27;class&#x27;,&#x27;axis-title&#x27;).attr(&#x27;data-axis&#x27;,&#x27;y&#x27;).attr(&#x27;transform&#x27;,&#x27;rotate(-90)&#x27;).attr(&#x27;x&#x27;,-(margin.top+height-margin.bottom)/2).attr(&#x27;y&#x27;,14).attr(&#x27;text-anchor&#x27;,&#x27;middle&#x27;).text(view===&#x27;month&#x27;?(measure===&#x27;kwh&#x27;?&#x27;Average usage (kWh/day)&#x27;:&#x27;Average cost (£/day)&#x27;):(measure===&#x27;kwh&#x27;?&#x27;Usage (kWh)&#x27;:&#x27;All-in cost (£)&#x27;));
