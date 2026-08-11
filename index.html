@@ -1033,7 +1033,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;nav class=&quot;period-nav&quot; aria-label=&quot;Move between periods&quot;&gt;
     &lt;button id=&quot;period-prev&quot; class=&quot;nav-btn&quot; type=&quot;button&quot; aria-label=&quot;Previous period&quot;&gt;‹&lt;/button&gt;
     &lt;div class=&quot;period-copy&quot; aria-live=&quot;polite&quot;&gt;
-      &lt;div id=&quot;period-label&quot; class=&quot;period-label&quot;&gt;10 August 2026&lt;/div&gt;
+      &lt;div id=&quot;period-label&quot; class=&quot;period-label&quot;&gt;11 August 2026&lt;/div&gt;
       &lt;div id=&quot;period-meta&quot; class=&quot;period-meta muted&quot;&gt;Daily usage · 69 of 69&lt;/div&gt;
       &lt;button id=&quot;period-latest&quot; class=&quot;latest-btn&quot; type=&quot;button&quot; hidden&gt;Return to latest&lt;/button&gt;
     &lt;/div&gt;
@@ -1066,7 +1066,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   &lt;section class=&quot;card detail&quot; aria-live=&quot;polite&quot;&gt;
     &lt;div class=&quot;detail-top&quot;&gt;
-      &lt;div&gt;&lt;p id=&quot;detail-kicker&quot; class=&quot;eyebrow&quot;&gt;SELECTED DAY&lt;/p&gt;&lt;p id=&quot;detail-title&quot; class=&quot;detail-title&quot;&gt;10 August 2026&lt;/p&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;p id=&quot;detail-kicker&quot; class=&quot;eyebrow&quot;&gt;SELECTED DAY&lt;/p&gt;&lt;p id=&quot;detail-title&quot; class=&quot;detail-title&quot;&gt;11 August 2026&lt;/p&gt;&lt;/div&gt;
       &lt;div&gt;&lt;p id=&quot;detail-kwh&quot; class=&quot;detail-total&quot;&gt;3.00 kWh&lt;/p&gt;&lt;p id=&quot;detail-status&quot; class=&quot;muted&quot;&gt;Actual daily usage · 1 day represented&lt;/p&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;breakdown&quot;&gt;
@@ -1081,7 +1081,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;comparison&quot;&gt;&lt;span&gt;Previous bill period&lt;/span&gt;&lt;strong&gt;8.52 kWh/day · £2.41/day&lt;/strong&gt;&lt;/div&gt;
   &lt;/section&gt;
 
-  &lt;p class=&quot;source muted&quot;&gt;69 daily values · 3 June–10 August · a reading dated 11 Aug closes 10 Aug usage · 67 actual, 2 estimated&lt;/p&gt;
+  &lt;p class=&quot;source muted&quot;&gt;69 daily values · 3 June–11 August · Ecotricity labels usage with the later reading date · 67 actual, 2 estimated&lt;/p&gt;
 
   &lt;script src=&quot;https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js&quot;&gt;&lt;/script&gt;
   &lt;script&gt;
@@ -1091,42 +1091,42 @@ html&gt;body{padding:0}&lt;/style&gt;
       const parse = d3.timeParse(&#x27;%Y-%m-%d&#x27;);
       const daily = [
         [&#x27;2026-06-03&#x27;,2.95,&#x27;actual&#x27;],[&#x27;2026-06-04&#x27;,2.83,&#x27;actual&#x27;],[&#x27;2026-06-05&#x27;,3.04,&#x27;actual&#x27;],[&#x27;2026-06-06&#x27;,30.03,&#x27;actual&#x27;],[&#x27;2026-06-07&#x27;,7.61,&#x27;actual&#x27;],
-        [&#x27;2026-06-08&#x27;,6.15,&#x27;estimated&#x27;],[&#x27;2026-06-09&#x27;,6.15,&#x27;estimated&#x27;],[&#x27;2026-06-10&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-11&#x27;,6.5,&#x27;actual&#x27;],[&#x27;2026-06-12&#x27;,6.4,&#x27;actual&#x27;],
-        [&#x27;2026-06-13&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-14&#x27;,6.4,&#x27;actual&#x27;],[&#x27;2026-06-15&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-16&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-17&#x27;,17.7,&#x27;actual&#x27;],
-        [&#x27;2026-06-18&#x27;,8.3,&#x27;actual&#x27;],[&#x27;2026-06-19&#x27;,15.9,&#x27;actual&#x27;],[&#x27;2026-06-20&#x27;,14.7,&#x27;actual&#x27;],[&#x27;2026-06-21&#x27;,10.3,&#x27;actual&#x27;],[&#x27;2026-06-22&#x27;,2.8,&#x27;actual&#x27;],
-        [&#x27;2026-06-23&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-06-24&#x27;,3.0,&#x27;actual&#x27;],[&#x27;2026-06-25&#x27;,3.1,&#x27;actual&#x27;],[&#x27;2026-06-26&#x27;,13.0,&#x27;actual&#x27;],[&#x27;2026-06-27&#x27;,17.2,&#x27;actual&#x27;],
-        [&#x27;2026-06-28&#x27;,12.8,&#x27;actual&#x27;],[&#x27;2026-06-29&#x27;,3.2,&#x27;actual&#x27;],[&#x27;2026-06-30&#x27;,3.0,&#x27;actual&#x27;],[&#x27;2026-07-01&#x27;,3.5,&#x27;actual&#x27;],[&#x27;2026-07-02&#x27;,16.8,&#x27;actual&#x27;],
-        [&#x27;2026-07-03&#x27;,14.7,&#x27;actual&#x27;],[&#x27;2026-07-04&#x27;,14.5,&#x27;actual&#x27;],[&#x27;2026-07-05&#x27;,12.2,&#x27;actual&#x27;],[&#x27;2026-07-06&#x27;,6.6,&#x27;actual&#x27;],[&#x27;2026-07-07&#x27;,2.7,&#x27;actual&#x27;],
-        [&#x27;2026-07-08&#x27;,2.9,&#x27;actual&#x27;],[&#x27;2026-07-09&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-10&#x27;,3.0,&#x27;actual&#x27;],[&#x27;2026-07-11&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-12&#x27;,2.9,&#x27;actual&#x27;],
-        [&#x27;2026-07-13&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-14&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-15&#x27;,15.7,&#x27;actual&#x27;],[&#x27;2026-07-16&#x27;,12.0,&#x27;actual&#x27;],[&#x27;2026-07-17&#x27;,11.4,&#x27;actual&#x27;],
-        [&#x27;2026-07-18&#x27;,10.3,&#x27;actual&#x27;],[&#x27;2026-07-19&#x27;,10.7,&#x27;actual&#x27;],[&#x27;2026-07-20&#x27;,8.3,&#x27;actual&#x27;],[&#x27;2026-07-21&#x27;,3.1,&#x27;actual&#x27;],[&#x27;2026-07-22&#x27;,3.1,&#x27;actual&#x27;],
-        [&#x27;2026-07-23&#x27;,14.3,&#x27;actual&#x27;],[&#x27;2026-07-24&#x27;,12.4,&#x27;actual&#x27;],[&#x27;2026-07-25&#x27;,10.8,&#x27;actual&#x27;],[&#x27;2026-07-26&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-27&#x27;,2.8,&#x27;actual&#x27;],
-        [&#x27;2026-07-28&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-29&#x27;,13.2,&#x27;actual&#x27;],[&#x27;2026-07-30&#x27;,16.9,&#x27;actual&#x27;],[&#x27;2026-07-31&#x27;,11.8,&#x27;actual&#x27;],[&#x27;2026-08-01&#x27;,14.0,&#x27;actual&#x27;],
-        [&#x27;2026-08-02&#x27;,9.2,&#x27;actual&#x27;],[&#x27;2026-08-03&#x27;,2.9,&#x27;actual&#x27;],[&#x27;2026-08-04&#x27;,2.9,&#x27;actual&#x27;],[&#x27;2026-08-05&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-08-06&#x27;,13.0,&#x27;actual&#x27;],
-        [&#x27;2026-08-07&#x27;,10.6,&#x27;actual&#x27;],[&#x27;2026-08-08&#x27;,9.9,&#x27;actual&#x27;],[&#x27;2026-08-09&#x27;,8.5,&#x27;actual&#x27;],[&#x27;2026-08-10&#x27;,3.0,&#x27;actual&#x27;]
+        [&#x27;2026-06-09&#x27;,6.15,&#x27;estimated&#x27;],[&#x27;2026-06-10&#x27;,6.15,&#x27;estimated&#x27;],[&#x27;2026-06-11&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-12&#x27;,6.5,&#x27;actual&#x27;],[&#x27;2026-06-13&#x27;,6.4,&#x27;actual&#x27;],
+        [&#x27;2026-06-14&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-15&#x27;,6.4,&#x27;actual&#x27;],[&#x27;2026-06-16&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-17&#x27;,6.3,&#x27;actual&#x27;],[&#x27;2026-06-18&#x27;,17.7,&#x27;actual&#x27;],
+        [&#x27;2026-06-19&#x27;,8.3,&#x27;actual&#x27;],[&#x27;2026-06-20&#x27;,15.9,&#x27;actual&#x27;],[&#x27;2026-06-21&#x27;,14.7,&#x27;actual&#x27;],[&#x27;2026-06-22&#x27;,10.3,&#x27;actual&#x27;],[&#x27;2026-06-23&#x27;,2.8,&#x27;actual&#x27;],
+        [&#x27;2026-06-24&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-06-25&#x27;,3.0,&#x27;actual&#x27;],[&#x27;2026-06-26&#x27;,3.1,&#x27;actual&#x27;],[&#x27;2026-06-27&#x27;,13.0,&#x27;actual&#x27;],[&#x27;2026-06-28&#x27;,17.2,&#x27;actual&#x27;],
+        [&#x27;2026-06-29&#x27;,12.8,&#x27;actual&#x27;],[&#x27;2026-06-30&#x27;,3.2,&#x27;actual&#x27;],[&#x27;2026-07-01&#x27;,3.0,&#x27;actual&#x27;],[&#x27;2026-07-02&#x27;,3.5,&#x27;actual&#x27;],[&#x27;2026-07-03&#x27;,16.8,&#x27;actual&#x27;],
+        [&#x27;2026-07-04&#x27;,14.7,&#x27;actual&#x27;],[&#x27;2026-07-05&#x27;,14.5,&#x27;actual&#x27;],[&#x27;2026-07-06&#x27;,12.2,&#x27;actual&#x27;],[&#x27;2026-07-07&#x27;,6.6,&#x27;actual&#x27;],[&#x27;2026-07-08&#x27;,2.7,&#x27;actual&#x27;],
+        [&#x27;2026-07-09&#x27;,2.9,&#x27;actual&#x27;],[&#x27;2026-07-10&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-11&#x27;,3.0,&#x27;actual&#x27;],[&#x27;2026-07-12&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-13&#x27;,2.9,&#x27;actual&#x27;],
+        [&#x27;2026-07-14&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-15&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-16&#x27;,15.7,&#x27;actual&#x27;],[&#x27;2026-07-17&#x27;,12.0,&#x27;actual&#x27;],[&#x27;2026-07-18&#x27;,11.4,&#x27;actual&#x27;],
+        [&#x27;2026-07-19&#x27;,10.3,&#x27;actual&#x27;],[&#x27;2026-07-20&#x27;,10.7,&#x27;actual&#x27;],[&#x27;2026-07-21&#x27;,8.3,&#x27;actual&#x27;],[&#x27;2026-07-22&#x27;,3.1,&#x27;actual&#x27;],[&#x27;2026-07-23&#x27;,3.1,&#x27;actual&#x27;],
+        [&#x27;2026-07-24&#x27;,14.3,&#x27;actual&#x27;],[&#x27;2026-07-25&#x27;,12.4,&#x27;actual&#x27;],[&#x27;2026-07-26&#x27;,10.8,&#x27;actual&#x27;],[&#x27;2026-07-27&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-28&#x27;,2.8,&#x27;actual&#x27;],
+        [&#x27;2026-07-29&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-07-30&#x27;,13.2,&#x27;actual&#x27;],[&#x27;2026-07-31&#x27;,16.9,&#x27;actual&#x27;],[&#x27;2026-08-01&#x27;,11.8,&#x27;actual&#x27;],[&#x27;2026-08-02&#x27;,14.0,&#x27;actual&#x27;],
+        [&#x27;2026-08-03&#x27;,9.2,&#x27;actual&#x27;],[&#x27;2026-08-04&#x27;,2.9,&#x27;actual&#x27;],[&#x27;2026-08-05&#x27;,2.9,&#x27;actual&#x27;],[&#x27;2026-08-06&#x27;,2.8,&#x27;actual&#x27;],[&#x27;2026-08-07&#x27;,13.0,&#x27;actual&#x27;],
+        [&#x27;2026-08-08&#x27;,10.6,&#x27;actual&#x27;],[&#x27;2026-08-09&#x27;,9.9,&#x27;actual&#x27;],[&#x27;2026-08-10&#x27;,8.5,&#x27;actual&#x27;],[&#x27;2026-08-11&#x27;,3.0,&#x27;actual&#x27;]
       ].map(([date,kwh,status])=&gt;{const parsed=parse(date);return {date:parsed,kwh,days:1,status,key:&#x27;d-&#x27;+date,label:d3.timeFormat(&#x27;%-d %b&#x27;)(parsed),fullLabel:d3.timeFormat(&#x27;%-d %B %Y&#x27;)(parsed)};});
       const weekly = [
         [&#x27;2026-06-03&#x27;,46.46,5,&#x27;actual&#x27;,&#x27;3–7 Jun&#x27;,&#x27;3–7 June 2026&#x27;],
-        [&#x27;2026-06-08&#x27;,44.2,7,&#x27;estimated&#x27;,&#x27;8–14 Jun&#x27;,&#x27;8–14 June 2026&#x27;],
-        [&#x27;2026-06-15&#x27;,79.5,7,&#x27;actual&#x27;,&#x27;15–21 Jun&#x27;,&#x27;15–21 June 2026&#x27;],
-        [&#x27;2026-06-22&#x27;,54.7,7,&#x27;actual&#x27;,&#x27;22–28 Jun&#x27;,&#x27;22–28 June 2026&#x27;],
-        [&#x27;2026-06-29&#x27;,67.9,7,&#x27;actual&#x27;,&#x27;29 Jun&#x27;,&#x27;29 June–5 July 2026&#x27;],
-        [&#x27;2026-07-06&#x27;,23.7,7,&#x27;actual&#x27;,&#x27;6–12 Jul&#x27;,&#x27;6–12 July 2026&#x27;],
-        [&#x27;2026-07-13&#x27;,65.7,7,&#x27;actual&#x27;,&#x27;13–19 Jul&#x27;,&#x27;13–19 July 2026&#x27;],
-        [&#x27;2026-07-20&#x27;,54.8,7,&#x27;actual&#x27;,&#x27;20–26 Jul&#x27;,&#x27;20–26 July 2026&#x27;],
-        [&#x27;2026-07-27&#x27;,70.7,7,&#x27;actual&#x27;,&#x27;27 Jul&#x27;,&#x27;27 July–2 August 2026&#x27;],
-        [&#x27;2026-08-03&#x27;,50.6,7,&#x27;actual&#x27;,&#x27;3–9 Aug&#x27;,&#x27;3–9 August 2026&#x27;]
+        [&#x27;2026-06-09&#x27;,37.8,6,&#x27;estimated&#x27;,&#x27;9–14 Jun&#x27;,&#x27;9–14 June 2026&#x27;],
+        [&#x27;2026-06-15&#x27;,75.6,7,&#x27;actual&#x27;,&#x27;15–21 Jun&#x27;,&#x27;15–21 June 2026&#x27;],
+        [&#x27;2026-06-22&#x27;,52.2,7,&#x27;actual&#x27;,&#x27;22–28 Jun&#x27;,&#x27;22–28 June 2026&#x27;],
+        [&#x27;2026-06-29&#x27;,68.5,7,&#x27;actual&#x27;,&#x27;29 Jun&#x27;,&#x27;29 June–5 July 2026&#x27;],
+        [&#x27;2026-07-06&#x27;,33.0,7,&#x27;actual&#x27;,&#x27;6–12 Jul&#x27;,&#x27;6–12 July 2026&#x27;],
+        [&#x27;2026-07-13&#x27;,57.9,7,&#x27;actual&#x27;,&#x27;13–19 Jul&#x27;,&#x27;13–19 July 2026&#x27;],
+        [&#x27;2026-07-20&#x27;,62.7,7,&#x27;actual&#x27;,&#x27;20–26 Jul&#x27;,&#x27;20–26 July 2026&#x27;],
+        [&#x27;2026-07-27&#x27;,64.3,7,&#x27;actual&#x27;,&#x27;27 Jul&#x27;,&#x27;27 July–2 August 2026&#x27;],
+        [&#x27;2026-08-03&#x27;,51.3,7,&#x27;actual&#x27;,&#x27;3–9 Aug&#x27;,&#x27;3–9 August 2026&#x27;]
       ].map(([date,kwh,days,status,label,fullLabel],i)=&gt;({date:parse(date),kwh,days,status,key:&#x27;w-&#x27;+i,label,fullLabel}));
       const billing = [
-        {date:parse(&#x27;2026-06-01&#x27;),kwh:231.06,days:28,status:&#x27;estimated&#x27;,key:&#x27;m-2026-06&#x27;,label:&#x27;Jun&#x27;,fullLabel:&#x27;June 2026 · from 3 June&#x27;},
-        {date:parse(&#x27;2026-07-01&#x27;),kwh:253.4,days:31,status:&#x27;actual&#x27;,key:&#x27;m-2026-07&#x27;,label:&#x27;Jul&#x27;,fullLabel:&#x27;July 2026&#x27;},
-        {date:parse(&#x27;2026-08-01&#x27;),kwh:76.8,days:10,status:&#x27;actual&#x27;,key:&#x27;m-2026-08&#x27;,label:&#x27;Aug&#x27;,fullLabel:&#x27;August 2026 · month to date (10 Aug)&#x27;}
+        {date:parse(&#x27;2026-06-01&#x27;),kwh:228.06,days:27,status:&#x27;estimated&#x27;,key:&#x27;m-2026-06&#x27;,label:&#x27;Jun&#x27;,fullLabel:&#x27;June 2026 · 27 recorded days&#x27;},
+        {date:parse(&#x27;2026-07-01&#x27;),kwh:244.6,days:31,status:&#x27;actual&#x27;,key:&#x27;m-2026-07&#x27;,label:&#x27;Jul&#x27;,fullLabel:&#x27;July 2026&#x27;},
+        {date:parse(&#x27;2026-08-01&#x27;),kwh:88.6,days:11,status:&#x27;actual&#x27;,key:&#x27;m-2026-08&#x27;,label:&#x27;Aug&#x27;,fullLabel:&#x27;August 2026 · month to date (11 Aug)&#x27;}
       ];
       const annual = [
         {date:parse(&#x27;2026-01-01&#x27;),kwh:3300,days:365,status:&#x27;estimated&#x27;,key:&#x27;y1&#x27;,label:&#x27;Ecotricity&#x27;,fullLabel:&#x27;Ecotricity annual estimate&#x27;},
         {date:parse(&#x27;2027-01-01&#x27;),kwh:2968.98,days:365,status:&#x27;estimated&#x27;,key:&#x27;y2&#x27;,label:&#x27;69-day pace&#x27;,fullLabel:&#x27;Projected annual usage from 69 daily values&#x27;}
       ];
-      let view = &#x27;day&#x27;, measure = &#x27;kwh&#x27;, selectedKey = &#x27;d-2026-08-10&#x27;, windowEndKey = &#x27;d-2026-08-10&#x27;, previousValues = null;
+      let view = &#x27;day&#x27;, measure = &#x27;kwh&#x27;, selectedKey = &#x27;d-2026-08-11&#x27;, windowEndKey = &#x27;d-2026-08-11&#x27;, previousValues = null;
       const svg = d3.select(root.querySelector(&#x27;.usage-chart&#x27;));
 
       const formatDay = d3.timeFormat(&#x27;%-d %B %Y&#x27;);
